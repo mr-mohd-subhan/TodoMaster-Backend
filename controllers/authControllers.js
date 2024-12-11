@@ -52,7 +52,7 @@ export const register = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: 'None',
         });
 
         logger.info("Registration successful for user", { email, userId: user._id });
@@ -96,7 +96,7 @@ export const login = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: 'None',
         });
 
         logger.info("User logged in successfully", { email, userId: user._id });
@@ -128,7 +128,7 @@ export const logout = async (req, res) => {
         res.clearCookie('token', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: 'None',
         });
         logger.info("User logged out successfully", { userId: req.userId });
         return res.status(200).json({ success: true, message: "Logged out successfully!" });
